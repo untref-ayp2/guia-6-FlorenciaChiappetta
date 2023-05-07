@@ -4,7 +4,7 @@ package dictionary
 type Dictionary[K comparable, V any] struct {
 	mapa map[K]V
 }
-
+ 
 /*********Métodos*********/
 // Crea un diccionario
 // O(1)
