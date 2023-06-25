@@ -13,19 +13,38 @@ import (
 // {“Mie 10”: [“Ana", "Pedro"], “Vie 12”:, [“Ana", "Luz”], “Mie 17”:, [“Luz”, "Pedro"]}
 // el resultado debe ser
 // {"Ana":["Mie 10", "Vie 12"], "Luz": ["Vie 12", "Mie 17"], "Pedro": ["Mie 10", "Mie 17"]}
-func InformacionSolicitada(entrada dictionary.Dictionary[string, []string]) *dictionary.Dictionary[string, []string] {
+func Ejercicio2(entrada dictionary.Dictionary[string, []string]) *dictionary.Dictionary[string, []string] {
 	dict := dictionary.NewDictionary[string, []string]()
-
 	for _, dia := range entrada.GetKeys() {
-
-		for _, nombres := range entrada.Get(dia) {
-			arreglo := []string{}
-			if dict.Contains(nombres) {
-				arreglo = dict.Get(dia)
+		for _, nombre := range entrada.Get(dia) {
+			if dict.Contains(nombre) {
+				value := dict.Get(nombre)
+				value = append(value, dia)
+				dict.Put(nombre, value)
+			} else {
+				value := []string{dia}
+				dict.Put(nombre, value)
 			}
-			arreglo = append(arreglo, dia)
-			dict.Put(nombres, arreglo)
 		}
+	}
+	return &dict
+}
+
+func Ejercicio2Invertido(entrada dictionary.Dictionary[string, []string]) *dictionary.Dictionary[string, []string] {
+
+	dict := dictionary.NewDictionary[string, []string]()
+	for _, nombre := range entrada.GetKeys() {
+		for _, dia := range entrada.Get(nombre) {
+			if dict.Contains(dia) {
+				values := entrada.Get(dia)
+				values = append(values, nombre)
+				dict.Put(dia, values)
+			} else {
+				values := []string{nombre}
+				dict.Put(dia, values)
+			}
+		}
+
 	}
 	return &dict
 }

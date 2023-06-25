@@ -4,7 +4,7 @@ package dictionary
 type Dictionary[K comparable, V any] struct {
 	mapa map[K]V
 }
- 
+
 /*********Métodos*********/
 // Crea un diccionario
 // O(1)
@@ -38,7 +38,7 @@ func (dict *Dictionary[K, V]) Contains(key K) bool {
 	return exists
 }
 
-// Devuelve el valor para esa clave 
+// Devuelve el valor para esa clave
 //O(1)
 func (dict *Dictionary[K, V]) Get(key K) V {
 	return dict.mapa[key]
@@ -74,3 +74,27 @@ func (dict *Dictionary[K, V]) GetValues() []V {
 	return dictValues
 }
 
+func (dict *Dictionary[K, V]) NotaFinal(entrada *Dictionary[string, []int]) *Dictionary[string, float64] {
+	d := NewDictionary[string, float64]()
+	for _, apellido := range entrada.GetKeys() {
+		arreglo := entrada.Get(apellido)
+		d.Put(apellido, promedio(arreglo))
+	}
+	return &d
+}
+
+func promedio(arreglo []int) float64 {
+	suma := float64(sumatoria(arreglo))
+	cantNotas := len(arreglo)
+
+	return suma / float64(cantNotas)
+
+}
+func sumatoria(arreglo []int) int {
+	if len(arreglo) == 1 {
+		return arreglo[0]
+	}
+	medio := len(arreglo) / 2
+
+	return sumatoria(arreglo[:medio]) + sumatoria(arreglo[medio:])
+}

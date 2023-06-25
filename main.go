@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"guia6/dictionary"
-	"guia6/ejercicios"
 )
 
 func main() {
@@ -66,16 +65,47 @@ func main() {
 	// 	fmt.Printf("%v:\t%v\n",key, auxl.String())
 	// }
 
-	d := dictionary.NewDictionary[string, []string]()
-	arreglo1 := []string{"Pedro", "Juana"}
-	d.Put("Miercoles", arreglo1)
-	arreglo2 := []string{"Luis", "Pedro", "Juan"}
-	d.Put("Jueves", arreglo2)
-	arreglo3 := []string{"Luis", "Ana", "Juana"}
-	d.Put("Viernes", arreglo3)
-	// arreglo4 := []string{"Lorena", "Luis", "Ana"}
-	// d.Put("Sabado", arreglo4)
-	fmt.Println(d)
-	fmt.Println(ejercicios.InformacionSolicitada(d))
+	// d2 := dictionary.NewDictionary[string, []string]()
+	// arreglo1 := []string{"Pedro", "Juana"}
+	// d2.Put("Miercoles", arreglo1)
+	// arreglo2 := []string{"Luis", "Pedro"}
+	// d2.Put("Jueves", arreglo2)
+	// arreglo3 := []string{"Luis", "Juana"}
+	// d2.Put("Viernes", arreglo3)
+	// // arreglo4 := []string{"Lorena", "Luis", "Ana"}
+	// // d.Put("Sabado", arreglo4)
+	// fmt.Println(d2)
+	// fmt.Println(ejercicios.Ejercicio2(d2))
 
+	// fmt.Println("\n", "--------------------------------------------------------------------")
+
+	// d := dictionary.NewDictionary[string, []string]()
+	// arregloI := []string{"Miercoles", "Viernes"}
+	// d.Put("Ana", arregloI)
+	// arregloII := []string{"Viernes", "Jueves"}
+	// d.Put("Juan", arregloII)
+	// arregloIII := []string{"Miercoles", "Jueves"}
+	// d.Put("Jose", arregloIII)
+	// // arreglo4 := []string{"Lorena", "Luis", "Ana"}
+	// // d.Put("Sabado", arreglo4)
+	// fmt.Println(d)
+	// fmt.Println(ejercicios.Ejercicio2Invertido(d))
+
+	// d := linkedlist.NewLinkedList()
+	// d.Insert(1)
+	// d.Insert(2)
+	// d.Insert(3)
+	// fmt.Println(d.String())
+
+	d := dictionary.NewDictionary[string, []int]()
+	a := []int{4, 4, 8, 6}
+	d.Put("Perez", a)
+
+	b := []int{5, 5, 6, 7}
+	d.Put("Sanchez", b)
+	c := []int{9, 8, 7, 6}
+	d.Put("Juan", c)
+	e := []int{10, 2, 8, 6}
+	d.Put("Flores", e)
+	fmt.Println(d.NotaFinal(&d))
 }

@@ -7,24 +7,24 @@ import (
 // node es el nodo de la lista enlazada
 // contiene un valor y un puntero al siguiente nodo
 // el valor es de tipo genérico, comparable
-type node[T any] struct {
-	value T
+type node[T int] struct {
+	value int
 	next  *node[T]
 }
 
 // newNode crea un nuevo nodo, con el valor recibido
 // y el puntero al siguiente nodo en nil
-func newNode[T comparable](value T) *node[T] {
-	return &node[T]{value: value, next: nil}
+func newNode[T int](value int) *node[int] {
+	return &node[int]{value: 0, next: nil}
 }
 
 /************************************************************/
 
 // LinkedList es la lista enlazada simple
 // contiene punteros al primer nodo y al último
-type LinkedList[T comparable] struct {
-	head *node[T] // puntero al primer nodo
-	tail *node[T] // puntero al último nodo
+type LinkedList[T int] struct {
+	head *node[int] // puntero al primer nodo
+	tail *node[int] // puntero al último nodo
 	size int
 }
 
@@ -33,7 +33,7 @@ type LinkedList[T comparable] struct {
 // con un puntero al primer nodo en nil
 // y un puntero al último nodo en nil
 // O(1)
-func NewLinkedList[T comparable]() *LinkedList[T] {
+func NewLinkedList[T int]() *LinkedList[T] {
 	return &LinkedList[T]{head: nil, tail: nil, size: 0}
 }
 
@@ -43,7 +43,7 @@ func NewLinkedList[T comparable]() *LinkedList[T] {
 // La posición 0 agrega el nodo al principio de la lista O(1)
 // La posición size agrega el nodo al final de la lista O(1)
 // Insertar en otra posición. O(n)
-func (l *LinkedList[T]) InsertAt(value T, position int) {
+func (l *LinkedList[T]) InsertAt(value int, position int) {
 	if position < 0 || position > l.size {
 		return
 	}
@@ -108,7 +108,7 @@ func (l *LinkedList[T]) RemoveAt(position int) {
 // Search busca el primer nodo que contenga el valor recibido
 // y devuelve su posición en la lista o -1 si no lo encuentra
 // O(n)
-func (l *LinkedList[T]) Search(value T) int {
+func (l *LinkedList[T]) Search(value int) int {
 	if l.head == nil {
 		return -1
 	}
@@ -127,9 +127,9 @@ func (l *LinkedList[T]) Search(value T) int {
 // Get devuelve el valor del nodo en la posición recibida
 // o un valor nulo si la posición es inválida
 // O(n)
-func (l *LinkedList[T]) Get(position int) T {
+func (l *LinkedList[T]) Get(position int) int {
 	if position < 0 || position >= l.size {
-		var t T // la variable t se inicializ con un valor nulo
+		var t int // la variable t se inicializ con un valor nulo
 		return t
 	}
 
@@ -150,7 +150,7 @@ func (l *LinkedList[T]) Size() int {
 
 // Contains verifica si el valor recibido está en la lista
 // O(n)
-func (l *LinkedList[T]) Contains(value T) bool {
+func (l *LinkedList[T]) Contains(value int) bool {
 	return l.Search(value) != -1
 }
 
@@ -179,4 +179,30 @@ func (l *LinkedList[T]) String() string {
 	}
 	result += "]"
 	return result
+}
+
+func (l *LinkedList[T]) Insert(value int) {
+	nodo := newNode[T](value)
+	if l.head == nil {
+		l.head = nodo
+		l.tail = nodo
+		l.tail.next = nil
+	}
+	posActual := l.head
+	for posActual != nil {
+		if posActual.value == value {
+			return
+		}
+		if posActual.value < value && value < posActual.next.value {
+			nodo.next = posActual.next.next
+			posActual.next = nodo
+		}
+		if posActual.value > value {
+			nodo.next = l.head
+			l.head = nodo
+		}
+
+		posActual = posActual.next
+	}
+
 }
