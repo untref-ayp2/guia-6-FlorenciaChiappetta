@@ -97,15 +97,53 @@ func main() {
 	// d.Insert(3)
 	// fmt.Println(d.String())
 
-	d := dictionary.NewDictionary[string, []int]()
-	a := []int{4, 4, 8, 6}
-	d.Put("Perez", a)
+	// d := dictionary.NewDictionary[string, []int]()
+	// a := []int{4, 4, 8, 6}
+	// d.Put("Perez", a)
 
-	b := []int{5, 5, 6, 7}
-	d.Put("Sanchez", b)
-	c := []int{9, 8, 7, 6}
-	d.Put("Juan", c)
-	e := []int{10, 2, 8, 6}
-	d.Put("Flores", e)
-	fmt.Println(d.NotaFinal(&d))
+	// b := []int{5, 5, 6, 7}
+	// d.Put("Sanchez", b)
+	// c := []int{9, 8, 7, 6}
+	// d.Put("Juan", c)
+	// e := []int{10, 2, 8, 6}
+	// d.Put("Flores", e)
+	// fmt.Println(d.NotaFinal(&d))
+
+	// fmt.Println("\n", "--------------------------------------------------------------------")
+	// var q1 dictionary.Queue
+	// q1.Enqueue(1)
+	// q1.Enqueue(2)
+	// q1.Enqueue(3)
+	// q1.Enqueue(4)
+	// q1.Enqueue(5)
+	// fmt.Println(dictionary.ColaInvertida(&q1))
+	// fmt.Println("\n", "--------------------------------------------------------------------")
+
+	// dict := dictionary.NewDictionary[string, []int]()
+	// notas1 := []int{4, 10, 0, 2}
+	// dict.Put("Juan", notas1)
+	// notas2 := []int{2, 7, 7, 0}
+	// dict.Put("Ana", notas2)
+	// notas3 := []int{2, 2, 7, 10}
+	// dict.Put("Pedro", notas3)
+	// notas4 := []int{5, 7, 4, 0}
+	// dict.Put("Jose", notas4)
+	// fmt.Println(dict.Aprobados(dict))
+
+	// l := linkedlist.NewLinkedList[int]()
+	// l.Append(1)
+	// l.Append(2)
+	// l.Append(3)
+	// l.Append(4)
+	// fmt.Print(l)
+	// // l.Revertir()
+	// // fmt.Print(l)
+
+	dict := dictionary.NewDictionary[string, []string]()
+	arreglo1 := []string{"Recibir dinero como pago de una deuda", "Obtener el pago de algo"}
+	dict.Put("Cobrar", arreglo1)
+	arreglo2 := []string{"Persona que recibe enseñanza."}
+	dict.Put("Alumno", arreglo2)
+	fmt.Print(dictionary.Agregar(dict, "Comprar", "Obtener algo por un precio"))
+	fmt.Println(dictionary.Agregar(dict, "Comprar", "no se"))
 }

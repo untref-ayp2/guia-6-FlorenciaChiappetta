@@ -181,28 +181,63 @@ func (l *LinkedList[T]) String() string {
 	return result
 }
 
-func (l *LinkedList[T]) Insert(value int) {
-	nodo := newNode[T](value)
-	if l.head == nil {
-		l.head = nodo
-		l.tail = nodo
-		l.tail.next = nil
-	}
-	posActual := l.head
-	for posActual != nil {
-		if posActual.value == value {
-			return
-		}
-		if posActual.value < value && value < posActual.next.value {
-			nodo.next = posActual.next.next
-			posActual.next = nodo
-		}
-		if posActual.value > value {
-			nodo.next = l.head
-			l.head = nodo
-		}
+// func (l *LinkedList[T]) Insert(value int) {
+// 	nodo := newNode[T](value)
+// 	if l.head == nil {
+// 		l.head = nodo
+// 		l.tail = nodo
+// 		l.tail.next = nil
+// 	}
+// 	posActual := l.head
+// 	for posActual != nil {
+// 		if posActual.value == value {
+// 			return
+// 		}
+// 		if posActual.value < value && value < posActual.next.value {
+// 			nodo.next = posActual.next.next
+// 			posActual.next = nodo
+// 		}
+// 		if posActual.value > value {
+// 			nodo.next = l.head
+// 			l.head = nodo
+// 		}
 
-		posActual = posActual.next
+// 		posActual = posActual.next
+// 	}
+
+// }
+
+func (l *LinkedList[T]) Append(value int) {
+	newNode := newNode(value)
+	if l.head == nil {
+		l.head = newNode
+		l.tail = newNode
+		return
 	}
+	l.tail.next = newNode
+	l.tail = newNode
 
 }
+
+// Prepend agrega un nuevo nodo, con el valor recibido,
+// al inicio de la lista
+// O(1)
+func (l *LinkedList[T]) Prepend(value int) {
+	newNode := newNode(value)
+	if l.head == nil {
+		l.head = newNode
+		l.tail = newNode
+		return
+	}
+	newNode.next = l.head
+	l.head = newNode
+
+}
+func (l *LinkedList[T]) Revertir() {
+	l.tail.next = l.head
+	l.head = l.tail
+}
+
+//Escribir una función que devuelva el elemento máximo de una lista de enteros
+//que utilice la técnica de división y conquista.
+//Calcular el orden de la solución aplicando el Teorema del Maestro.
