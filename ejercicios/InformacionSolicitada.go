@@ -121,7 +121,7 @@ func Deportistas(d1 *dictionary.Dictionary[string, *dictionary.Dictionary[int, [
 				if !d2.Contains(año) {
 					arreglo := dictint.Get(año)
 					d3.Put(tenista, arreglo)
-					d2.Put(año, &d3)
+					d2.Put(año,&d3)
 				} else {
 					dictint2 := d2.Get(año)
 					arreglo := dictint2.Get(tenista)

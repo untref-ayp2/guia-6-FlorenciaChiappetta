@@ -1,6 +1,9 @@
 package dictionary
 
-import "errors"
+import (
+	"errors"
+	"guia6/linkedlist"
+)
 
 // Diccionario es un conjunto de entradas formadas por pares únicos (clave: valor)
 type Dictionary[K comparable, V any] struct {
@@ -249,4 +252,14 @@ func (s1 *Stack) RecibirPila(q Queue) *Stack {
 	s1.RecibirPila(q)
 	s1.Push(value)
 	return s1
+}
+
+// 3. Escriba una función que toma 2 slices 
+// y devuelve una nueva lista que es el resultado de la interseccion de los 2 slices anteriores,
+//  la complejidad del metodo debe ser O(n)
+
+
+func Interseccion(s1 []string, s2 []string) *linkedlist.LinkedList[string]{
+	
+
 }

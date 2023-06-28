@@ -278,11 +278,11 @@ func ArregloEsMagico(arreglo []int) bool {
 	return ValidarArreglo(arreglo, 0, len(arreglo))
 }
 
-func ValidarArreglo(Arreglo []int, posinicial int, posfinal int) bool {
-	if Arreglo[posinicial] == posinicial {
+func ValidarArreglo(arreglo []int, posinicial int, posfinal int) bool {
+	if arreglo[posinicial] == posinicial {
 		return true
 	} else if posinicial <= posfinal {
-		ValidarArreglo(Arreglo, posinicial+1, posfinal)
+		ValidarArreglo(arreglo, posinicial+1, posfinal)
 	}
 	return false
 }
