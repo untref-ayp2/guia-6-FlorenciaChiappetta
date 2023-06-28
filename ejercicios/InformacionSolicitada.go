@@ -76,3 +76,61 @@ func Ejercicio2Invertido(entrada dictionary.Dictionary[string, []string]) *dicti
 // }
 // return alumnos
 // }
+
+func Sumatoria(arreglo []int) int {
+
+	if len(arreglo) == 1 {
+
+		return arreglo[0]
+	}
+
+	medio := len(arreglo) / 2
+
+	return Sumatoria(arreglo[:medio]) + Sumatoria(arreglo[medio:])
+
+}
+
+func InvertirDic(d1 *dictionary.Dictionary[string, []string]) *dictionary.Dictionary[string, []string] {
+	d2 := dictionary.NewDictionary[string, []string]()
+
+	for _, materia := range d1.GetKeys() {
+
+		for _, apellido := range d1.Get(materia) {
+			if !d2.Contains(apellido) {
+				materias := []string{materia}
+				d2.Put(apellido, materias)
+			} else {
+				materias := d2.Get(apellido)
+				materias = append(materias, materia)
+				d2.Put(apellido, materias)
+			}
+		}
+	}
+	return &d2
+
+}
+func Deportistas(d1 *dictionary.Dictionary[string, *dictionary.Dictionary[int, []string]]) *dictionary.Dictionary[int, *dictionary.Dictionary[string, []string]] {
+	d2 := dictionary.NewDictionary[int, *dictionary.Dictionary[string, []string]]()
+	d3 := dictionary.NewDictionary[string, []string]()
+
+	for _, tenista := range d1.GetKeys() {
+		dictint := d1.Get(tenista)
+		for _, año := range dictint.GetKeys() {
+			for _, torneo := range dictint.Get(año) {
+
+				if !d2.Contains(año) {
+					arreglo := dictint.Get(año)
+					d3.Put(tenista, arreglo)
+					d2.Put(año, &d3)
+				} else {
+					dictint2 := d2.Get(año)
+					arreglo := dictint2.Get(tenista)
+					arreglo = append(arreglo, torneo)
+					dictint2.Put(tenista, arreglo)
+					d2.Put(año, dictint2)
+				}
+			}
+		}
+	}
+	return &d2
+}

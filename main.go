@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"guia6/dictionary"
+	"guia6/linkedlist"
 )
 
 func main() {
@@ -91,6 +91,16 @@ func main() {
 	// fmt.Println(d)
 	// fmt.Println(ejercicios.Ejercicio2Invertido(d))
 
+	// d := dictionary.NewDictionary[string, *dictionary.Dictionary[int, []string]]()
+	// d2 := dictionary.NewDictionary[int, []string]()
+	// ar := []string{"Individual F US Open", "Doble Mixto Wimbledon"}
+	// ab := []string{"Dobles US Open", "Dobles F Wimbledon"}
+	// d2.Put(1990, ar)
+	// d2.Put(1988, ab)
+	// d.Put("Gabriela Sabattini", &d2)
+	// fmt.Println(d2)
+	// fmt.Println(ejercicios.Deportistas(&d))
+
 	// d := linkedlist.NewLinkedList()
 	// d.Insert(1)
 	// d.Insert(2)
@@ -111,13 +121,13 @@ func main() {
 
 	// fmt.Println("\n", "--------------------------------------------------------------------")
 	// var q1 dictionary.Queue
+	// var s dictionary.Stack
 	// q1.Enqueue(1)
 	// q1.Enqueue(2)
 	// q1.Enqueue(3)
 	// q1.Enqueue(4)
 	// q1.Enqueue(5)
-	// fmt.Println(dictionary.ColaInvertida(&q1))
-	// fmt.Println("\n", "--------------------------------------------------------------------")
+	// fmt.Println(s.RecibirPila(q1))
 
 	// dict := dictionary.NewDictionary[string, []int]()
 	// notas1 := []int{4, 10, 0, 2}
@@ -139,11 +149,13 @@ func main() {
 	// // l.Revertir()
 	// // fmt.Print(l)
 
-	dict := dictionary.NewDictionary[string, []string]()
-	arreglo1 := []string{"Recibir dinero como pago de una deuda", "Obtener el pago de algo"}
-	dict.Put("Cobrar", arreglo1)
-	arreglo2 := []string{"Persona que recibe enseñanza."}
-	dict.Put("Alumno", arreglo2)
-	fmt.Print(dictionary.Agregar(dict, "Comprar", "Obtener algo por un precio"))
-	fmt.Println(dictionary.Agregar(dict, "Comprar", "no se"))
+	// a := []int{1, 2, 3, 4, 5, 7, 90, 9}
+	// linkedlist.Maximo(a)
+
+	// arreglo := []int{1, 0, 2, 3, 4, 5, 7, 90, 9, 1293, 9902, 70}
+	// fmt.Println(linkedlist.MaxandMin(arreglo))
+
+	arreglo1 := []int{9, 11, 23, 24, 4}
+
+	fmt.Println(linkedlist.ArregloEsMagico(arreglo1))
 }

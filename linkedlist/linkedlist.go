@@ -233,11 +233,56 @@ func (l *LinkedList[T]) Prepend(value int) {
 	l.head = newNode
 
 }
-func (l *LinkedList[T]) Revertir() {
-	l.tail.next = l.head
-	l.head = l.tail
+
+// Escribir una función que devuelva el elemento máximo de una lista de enteros
+// que utilice la técnica de división y conquista.
+// Calcular el orden de la solución aplicando el Teorema del Maestro.
+func Maximo(arreglo []int) int {
+	if len(arreglo) == 1 {
+		return arreglo[0]
+	}
+	medio := len(arreglo) / 2
+	max_izquierda := Maximo(arreglo[:medio])
+	max_derecha := Maximo(arreglo[medio:])
+
+	return max(max_izquierda, max_derecha)
 }
 
-//Escribir una función que devuelva el elemento máximo de una lista de enteros
-//que utilice la técnica de división y conquista.
-//Calcular el orden de la solución aplicando el Teorema del Maestro.
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+func MaxandMin(arreglo []int) (int, int) {
+	if len(arreglo) == 1 {
+		return arreglo[0], arreglo[0]
+	}
+	medio := len(arreglo) / 2
+	minizq, maxizq := MaxandMin(arreglo[:medio])
+	minderecha, maxderecha := MaxandMin(arreglo[medio:])
+
+	return min(minizq, minderecha), max(maxizq, maxderecha)
+
+}
+
+func ArregloEsMagico(arreglo []int) bool {
+
+	return ValidarArreglo(arreglo, 0, len(arreglo))
+}
+
+func ValidarArreglo(Arreglo []int, posinicial int, posfinal int) bool {
+	if Arreglo[posinicial] == posinicial {
+		return true
+	} else if posinicial <= posfinal {
+		ValidarArreglo(Arreglo, posinicial+1, posfinal)
+	}
+	return false
+}
