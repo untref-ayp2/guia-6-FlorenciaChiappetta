@@ -4,6 +4,6 @@ import (
 	"guia6/dictionary"
 )
 
-func Frecuencia(s string) *dictionary.Dictionary[string, int]{
+func Frecuencia(s string) *dictionary.Dictionary[string, int] {
 	panic("Not implemented")
 }
